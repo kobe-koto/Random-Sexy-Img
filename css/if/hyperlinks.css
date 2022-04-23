@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* Made with heart by kobe-koto in AGPL-3.0 License License */
+/* copyright 2021 kobe-koto */
+a:visited , a:link {
+	text-decoration: none;
+	color: rgb(0,190,255);
+	display: inline-block;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 0 2px;
+	transition: all 0.45s cubic-bezier(0, 0.1, 0.9, 1);
+	background-image: linear-gradient(to bottom,rgba(205,70,110,1) 100%,rgba(205,70,110,1) 100%);
+}
+a:link:hover , a:visited:hover {
+	background-size: 95vh 1px;
+}
+a:link:active , a:visited:active {
+	color: rgba(40,130,145,1.00);
+	transform: scale(0.9);
+}

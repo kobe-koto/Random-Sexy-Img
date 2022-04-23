@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* Made with heart by kobe-koto in AGPL-3.0 License License */
+/* copyright 2021 kobe-koto */
+.glass_main {
+	max-width: 75%;
+	height: auto;
+	margin: 4em auto;
+	padding: 2em;
+	color: white;
+	border-radius: 8px;
+	backdrop-filter: hue-rotate(0deg) blur(9px);
+	-webkit-backdrop-filter: hue-rotate(0deg) blur(9px);
+	box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+	background-color: rgba(0,0,0,0.3);
+
+	/*animation:6.36s RGBHueRotate infinite;*/
+}
+/*
+@keyframes RGBHueRotate {
+	0% {
+		backdrop-filter: hue-rotate(0deg) blur(10px);
+	}
+	100% {
+		backdrop-filter: hue-rotate(360deg) blur(10px);
+	}
+}*/

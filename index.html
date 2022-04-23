@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<link href="./images/info.svg" rel="icon" id="favicon">
+	<title>koto醬的11~! | kobe koto</title>
+	<style>
+		body {
+			background-color: #000000;
+			/* for old ↑ */
+
+			background-image: linear-gradient(45deg, #b2a2cd 25%, #5f5370 25%, #5f5370 50%, #b2a2cd 50%, #b2a2cd 75%, #5f5370 75%, #5f5370 100%);
+			background-size: 60px 60px;
+			background-attachment: fixed;
+			background-position: center;
+
+			overflow: auto;
+			margin: 0;
+
+			padding: 10px 10px 10px 20px;
+			color: rgb(0, 0, 0);
+			background-color: rgba(172,255,218,0.7);
+			font-style: normal;
+			font-weight: 200;
+		}
+		.glass_main {
+			max-width: 75%;
+			height: auto;
+			margin: 4em auto;
+			padding: 2em;
+			color: white;
+			border-radius: 8px;
+			backdrop-filter: hue-rotate(0deg) blur(9px);
+			-webkit-backdrop-filter: hue-rotate(0deg) blur(9px);
+			box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+			background-color: rgba(0,0,0,0.3);
+
+			/*animation:6.36s RGBHueRotate infinite;*/
+		}
+		* {
+			font-family: 'Segoe UI', 'Segoe WP', Arial, Sans-Serif, system-ui;
+		}
+		a:link,a:visited {
+			text-decoration: none;
+			border: 2px #ffffff;
+			border-bottom-style: dotted;
+			color: #ffffff;
+		}
+		a:link:hover,a:visited:hover {
+			border-bottom-style: solid;
+		}
+		::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			background: linear-gradient(45deg,#f284ff 16%,#31cae6 57%,#20a53a 150%);
+
+			border-style: solid;
+			border-width: 2px;
+			box-sizing: border-box;
+			border-color: #232323;
+		}
+		::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+			background-color: #232323;
+		}
+		::-webkit-scrollbar-corner {
+			background: #000;
+		}
+		::-webkit-scrollbar-track {
+			opacity: 0;
+			border-radius: 10px;
+		}
+		::-webkit-scrollbar-button{
+			width: 10px;
+			height: 10px;
+			background-color: #606060;
+			border-radius: 50%;
+
+			border-style: solid;
+			border-width: 3px;
+			box-sizing: border-box;
+			border-color: #232323;
+		}
+		
+		.line {
+			height: 1px;
+			width: 90%;
+			display: block;
+			background-color: #ffffff;
+			margin: auto;
+		}
+
+
+		code {
+			background-color: #232323;
+			border-radius: 5px;
+			display: block;
+			word-break: break-word;
+			word-wrap: break-word;
+			padding: 10px;
+		}
+		table {
+			background-color: #ffffff;
+			color: #ffffff;
+		}
+		tbody {
+			background-color: #232323;
+		}
+		td {
+			padding: 2px;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="glass_main" style="text-align: center;">
+		<h2>隨機色圖網站...</h2>
+		<h4>kobe koto爲了ghs專門整了個網站！（逃</h4>
+
+		<span class="line"></span>
+
+		<h5>fur edition</h5>
+		<h6>
+			<a href="./fur/index.html">普通版本</a>
+			&nbsp;&nbsp;
+			<a href="./fur/float.html">InfoZone浮動版本</a>
+		</h6>
+
+		<span class="line"></span>
+
+		<h5>gay edition</h5>
+
+		<h6>
+			<a href="./gay/index.html">普通版本</a>
+			&nbsp;&nbsp;<a href="./gay/float.html">
+			InfoZone浮動版本</a>
+		</h6>
+
+		<span class="line"></span>
+
+		<p>如果您只是普通用戶, 那麽就沒必要繼續看下去了, 按自己的喜好點擊上方的鏈接即可.</p>
+	</div>
+
+	<div class="glass_main">
+		<h2>...和API!</h2>
+		<p>我使用 Cloudflare Workers 提供了一個隨機色圖的 API, 下面是個傳回數值的定義.</p>
+		<p>一共有以下幾個傳回值.</p>
+		<table>
+			<tbody>
+				<tr><td>返回數值名</td><td>描述</td><td>示例</td></tr>
+				<tr><td>code</td><td>請求狀態碼</td><td>200</td></tr>
+				<tr><td>msg</td><td>請求信息</td><td>OK</td></tr>
+				<tr><td>type</td><td>請求的數據庫</td><td>fur或gay</td></tr>
+				<tr><td>count</td><td>指示數據庫收入了多少張圖片</td><td>1000</td></tr>
+				<tr><td>name</td><td>圖像檔案名</td><td>IMG_0176-1.JPG</td></tr>
+				<tr><td>url</td><td>指向圖像的連結</td><td>https://drive-koto.vercel.app/api/raw/?path=/Image/GetColorImg/fur/IMG_0176-1.JPG</td></tr>
+				<tr><td>urlPreview</td><td>指向圖像的預覽用鏈接</td><td>https://drive.koto.cc/Main/Image/GetColorImg/fur/IMG_0176-1.JPG?preview</td></tr>
+			</tbody>
+		</table>
+		<p>返回的數據為JSON格式, 示例如下</p>
+		<code>{"code":"200","msg":"OK","type":"fur","count":"1078","name":"IMG_0176-1.JPG","url":"https://drive-koto.vercel.app/api/raw/?path=/Image/GetColorImg/fur/IMG_0176-1.JPG","urlPreview":"https://drive.koto.cc/Main/Image/GetColorImg/fur/IMG_0176-1.JPG?preview"}</code>
+		<p>要調用此 API - fur Edition, 發送 Get 請求到 fur.random-sexy-img.koto.workers.dev.</p>
+		<p>要調用此 API - gay Edition, 發送 Get 請求到 gay.random-sexy-img.koto.workers.dev.</p>
+		<p style="font-size: smaller">另注: API允許跨域請求(Access-Control-Allow-Origin: *), 禁止緩存(Cache-Control: no-store)</p>
+	</div>
+
+	<div class="glass_main" style="text-align: center;">
+		<p><a href="https://drive.koto.cc/">在這裏面的FurUpload或者GayUpload上傳您的色圖!</a></p>
+		<h5>
+			<a>Copyright kobe-koto</a>
+			&nbsp;|&nbsp;
+			<a href="https://github.com/kobe-koto/kobe-koto.github.io/">Open Source Code</a>
+			&nbsp;|&nbsp;
+			Under AGPL-3.0
+		</h5>
+		<h4>&copy;2021 - <strong>kobe-koto</strong></h4>
+	</div>
+
+</body>
+</html>

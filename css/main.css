@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* Made with heart by kobe-koto in AGPL-3.0 License License */
+/* copyright 2021 kobe-koto */
+body {
+    background-color: #303030;
+    background-image: none;
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+}
+* {
+    font-family: 'Segoe UI', 'Segoe WP', Arial, Sans-Serif, system-ui;
+}
+a:link,a:visited {
+    text-decoration: none;
+    border: 2px #000000;
+    border-bottom-style: dotted;
+    color: #000;
+}
+a:link:hover,a:visited:hover {
+    border-bottom-style: solid;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(45deg,#f284ff 16%,#31cae6 57%,#20a53a 150%);
+
+    border-style: solid;
+    border-width: 2px;
+    box-sizing: border-box;
+    border-color: #232323;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #232323;
+}
+::-webkit-scrollbar-corner {
+    background: #000;
+}
+::-webkit-scrollbar-track {
+    opacity: 0;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-button{
+    width: 10px;
+    height: 10px;
+    background-color: #606060;
+    border-radius: 50%;
+
+    border-style: solid;
+    border-width: 3px;
+    box-sizing: border-box;
+    border-color: #232323;
+}
+
+.InfoZone {
+    height: auto;
+    padding: 10px 10px 10px 20px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(172,255,218,0.7);
+
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#InfoZone a,a:link:hover,a:visited:hover,a:link,a:visited {
+    text-decoration: none;
+    border: none;
+}
+.imgButton {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 10px 0 0;
+
+    background-position: center;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+
+    border-radius: 3em;
+    background-color: rgba(35, 35, 35, 0.55);
+    backdrop-filter: blur(3px);
+    user-select: none;
+    overflow: hidden;
+    color: #ffffff;
+
+    transition: all 0.45s cubic-bezier(0.5,0,0.5,1);
+}
+/* dont touch it 👆 */
+
+#colorPic {
+    width: 100%;
+    height: auto;
+    user-select: none;
+}
+#non-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1145141919810;
+    width: 100%;
+    height: auto;
+    user-select: none;
+    background: #ff0000;
+    color: #ffffff;
+    font-size: 30px;
+}

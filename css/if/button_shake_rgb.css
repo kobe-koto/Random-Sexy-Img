@@ -1,0 +1,137 @@
+@charset "utf-8";
+/* Made with heart by kobe-koto in AGPL-3.0 License License */
+/* copyright 2021 kobe-koto */
+/* <button><a> words </a></button>*/
+.RGBShake_button {
+	border:1px solid #eee;
+	animation:RGBShake_button-m 20s linear infinite;
+	animation-direction:alternate;
+	border-radius:3px;
+	/* hwidth: auto; */
+	height: auto;
+	cursor: pointer;
+
+	background-color: #000000;
+	/* for old↑ new↓ */
+	background-color: rgba(0,0,0,0);
+
+	width: max-content;
+	color:#ffffff;
+	padding: 8px 15px;
+}
+.RGBShake_button:hover {
+	animation:RGBShake_button-x 0.3s linear infinite;
+}
+.RGBShake_button:hover>a {
+	animation:RGBShake_button-a 1s linear infinite;
+}
+.RGBShake_button:active {
+	transform: translateY(1px);
+	animation:RGBShake_button-x 0.3s linear infinite;
+}
+@keyframes RGBShake_button-m {
+	10% {
+		border-color:#ff9292;
+	}
+	20% {
+		border-color:#f09eff;
+	}
+	30% {
+		border-color:#9397ff;
+	}
+	40% {
+		border-color:#9fb8ff;
+	}
+	50% {
+		border-color:#9fd7ff;
+	}
+	60% {
+		border-color:#9fffd2;
+	}
+	70% {
+		border-color:#dfff9f;
+	}
+	80% {
+		border-color:#ffd49f;
+	}
+	90% {
+		border-color:#ffc29f;
+	}
+	100% {
+		border-color:#ffa198;
+	}
+}
+@keyframes RGBShake_button-x {
+	 10% {
+		 transform:translate(-0.5px,1.5px) rotate(0.5deg);
+		 border-color:#ffbebe;
+	 }
+	 20% {
+		 transform:translate(-0.5px,1.5px) rotate(-0.5deg);
+		 border-color:#ffdebe;
+	 }
+	 30% {
+		 transform:translate(-2.5px,-1.5px) rotate(0.5deg);
+		 border-color:#fff3be;
+	 }
+	 40% {
+		 transform:translate(-2.5px,-2.5px) rotate(-1.5deg);
+		 border-color:#eeffbe;
+	 }
+	 50% {
+		 transform:translate(1.5px,1.5px) rotate(-1.5deg);
+		 border-color:#f3ffbe;
+	 }
+	 60% {
+		 transform:translate(-2.5px,-0.5px) rotate(-0.5deg);
+		 border-color:#e9ffbe;
+	 }
+	 70% {
+		 transform:translate(1.5px,-2.5px) rotate(-0.5deg);
+		 border-color:#d0ffbe;
+	 }
+	 80% {
+		 transform:translate(0.5px,1.5px) rotate(0.5deg);
+		 border-color:#beffde;
+	 }
+	 90% {
+		 transform:translate(-2.5px,-0.5px) rotate(0.5deg);
+		 border-color:#beefff;
+	 }
+	 100% {
+		 transform:translate(-0.5px,-0.5px) rotate(-1.5deg);
+		 border-color:#bed8ff;
+	 }
+}
+@keyframes RGBShake_button-a {
+	 10% {
+		 color:#ff9292;
+	 }
+	 20% {
+		 color:#f09eff;
+	 }
+	 30% {
+		 color:#9397ff;
+	 }
+	 40% {
+		 color:#9fb8ff;
+	 }
+	 50% {
+		 color:#9fd7ff;
+	 }
+	 60% {
+		 color:#9fffd2;
+	 }
+	 70% {
+		 color:#dfff9f;
+	 }
+	 80% {
+		 color:#ffd49f;
+	 }
+	 90% {
+		 color:#ffc29f;
+	 }
+	 100% {
+		 color:#ffa198;
+	 }
+}
