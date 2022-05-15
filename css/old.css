@@ -34,21 +34,16 @@
     border-color: #232323;
 }
 body {
-    background-color: #000000;
-    /* for old ↑ */
-
-    background-image: linear-gradient(45deg, #b2a2cd 25%, #5f5370 25%, #5f5370 50%, #b2a2cd 50%, #b2a2cd 75%, #5f5370 75%, #5f5370 100%);
-    background-size: 60px 60px;
-    background-attachment: fixed;
-    background-position: center;
-
-    font-family: source-sans-pro;
+    font-family: source-sans-pro, sans-serif;
 
     padding: 0;
     margin: 0;
 
     font-style: normal;
     font-weight: 200;
+    
+    background-color: #303030;
+    background-image: none;
 }
 a:visited , a:link {
     text-decoration: none;
@@ -68,18 +63,15 @@ a:link:active , a:visited:active {
     color: rgba(40,130,145,1.00);
     transform: scale(0.9);
 }
-/* <button><a> words </a></button>*/
 .RGBShake_button {
     border:1px solid #eee;
     animation:RGBShake_button-m 20s linear infinite;
     animation-direction:alternate;
     border-radius:3px;
-    /* hwidth: auto; */
     height: auto;
     cursor: pointer;
 
     background-color: #000000;
-    /* for old↑ new↓ */
     background-color: rgba(0,0,0,0);
 
     width: max-content;
@@ -93,114 +85,44 @@ a:link:active , a:visited:active {
     animation:RGBShake_button-a 1s linear infinite;
 }
 .RGBShake_button:active {
-    transform: translateY(1px);
+    transform: scale(.95);
     animation:RGBShake_button-x 0.3s linear infinite;
 }
 @keyframes RGBShake_button-m {
-    10% {
-        border-color:#ff9292;
-    }
-    20% {
-        border-color:#f09eff;
-    }
-    30% {
-        border-color:#9397ff;
-    }
-    40% {
-        border-color:#9fb8ff;
-    }
-    50% {
-        border-color:#9fd7ff;
-    }
-    60% {
-        border-color:#9fffd2;
-    }
-    70% {
-        border-color:#dfff9f;
-    }
-    80% {
-        border-color:#ffd49f;
-    }
-    90% {
-        border-color:#ffc29f;
-    }
-    100% {
-        border-color:#ffa198;
-    }
+    10% {border-color:#ff9292;}
+    20% {border-color:#f09eff;}
+    30% {border-color:#9397ff;}
+    40% {border-color:#9fb8ff;}
+    50% {border-color:#9fd7ff;}
+    60% {border-color:#9fffd2;}
+    70% {border-color:#dfff9f;}
+    80% {border-color:#ffd49f;}
+    90% {border-color:#ffc29f;}
+    100% {border-color:#ffa198;}
 }
 @keyframes RGBShake_button-x {
-    10% {
-        transform:translate(-0.5px,1.5px) rotate(0.5deg);
-        border-color:#ffbebe;
-    }
-    20% {
-        transform:translate(-0.5px,1.5px) rotate(-0.5deg);
-        border-color:#ffdebe;
-    }
-    30% {
-        transform:translate(-2.5px,-1.5px) rotate(0.5deg);
-        border-color:#fff3be;
-    }
-    40% {
-        transform:translate(-2.5px,-2.5px) rotate(-1.5deg);
-        border-color:#eeffbe;
-    }
-    50% {
-        transform:translate(1.5px,1.5px) rotate(-1.5deg);
-        border-color:#f3ffbe;
-    }
-    60% {
-        transform:translate(-2.5px,-0.5px) rotate(-0.5deg);
-        border-color:#e9ffbe;
-    }
-    70% {
-        transform:translate(1.5px,-2.5px) rotate(-0.5deg);
-        border-color:#d0ffbe;
-    }
-    80% {
-        transform:translate(0.5px,1.5px) rotate(0.5deg);
-        border-color:#beffde;
-    }
-    90% {
-        transform:translate(-2.5px,-0.5px) rotate(0.5deg);
-        border-color:#beefff;
-    }
-    100% {
-        transform:translate(-0.5px,-0.5px) rotate(-1.5deg);
-        border-color:#bed8ff;
-    }
+    10% {border-color:#ffbebe;}
+    20% {border-color:#ffdebe;}
+    30% {border-color:#fff3be;}
+    40% {border-color:#eeffbe;}
+    50% {border-color:#f3ffbe;}
+    60% {border-color:#e9ffbe;}
+    70% {border-color:#d0ffbe;}
+    80% {border-color:#beffde;}
+    90% {border-color:#beefff;}
+    100% {border-color:#bed8ff;}
 }
 @keyframes RGBShake_button-a {
-    10% {
-        color:#ff9292;
-    }
-    20% {
-        color:#f09eff;
-    }
-    30% {
-        color:#9397ff;
-    }
-    40% {
-        color:#9fb8ff;
-    }
-    50% {
-        color:#9fd7ff;
-    }
-    60% {
-        color:#9fffd2;
-    }
-    70% {
-        color:#dfff9f;
-    }
-    80% {
-        color:#ffd49f;
-    }
-    90% {
-        color:#ffc29f;
-    }
-    100% {
-        color:#ffa198;
-    }
+    10% {color:#ff9292;}
+    20% {color:#f09eff;}
+    30% {color:#9397ff;}
+    40% {color:#9fb8ff;}
+    50% {color:#9fd7ff;}
+    60% {color:#9fffd2;}
+    70% {color:#dfff9f;}
+    80% {color:#ffd49f;}
+    90% {color:#ffc29f;}
+    100% {color:#ffa198;}
 }
 .glass_main {
     max-width: 75%;
@@ -209,12 +131,33 @@ a:link:active , a:visited:active {
     padding: 2em;
     color: white;
     border-radius: 8px;
-    backdrop-filter: hue-rotate(0deg) blur(9px);
-    -webkit-backdrop-filter: hue-rotate(0deg) blur(9px);
-    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: #424242;
+    box-shadow: none;
 
     /*animation:6.36s RGBHueRotate infinite;*/
+}
+
+img {
+    border-radius: 25px;
+    width: 100%;
+    min-height: 50px;
+    transition: all 150ms cubic-bezier(0.5,0,0.65,1);
+}
+img:hover {
+    border-radius: 3px;
+}
+
+#non-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1145141919810;
+    width: 100%;
+    height: 100vh;
+    user-select: none;
+    background: #ff0000;
+    color: #ffffff;
+    font-size: 30px;
 }
 
 .loader{
@@ -249,14 +192,7 @@ a:link:active , a:visited:active {
     background: #faaacc;
 }
 @keyframes slide {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        opacity: .3;
-        transform: scale(2);
-    }
-    100% {
-        transform: scale(1);
-    }
+    0% {transform: scale(1);}
+    50% {opacity: .3;transform: scale(2);}
+    100% {transform: scale(1);}
 }
