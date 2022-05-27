@@ -58,6 +58,7 @@ a:link:hover,a:visited:hover {
     padding: 10px 10px 10px 20px;
     color: rgb(0, 0, 0);
     background-color: rgba(172,255,218,0.7);
+    text-align: center;
 
 
     user-select: none;

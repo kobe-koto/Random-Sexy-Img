@@ -52,7 +52,7 @@ function GetQueryString(name) {
 		return "";
 	}
 }
-function Load(img) {
+function Load(img,databaseType) {
 	//load a new Img from varied API.
 	if (img == "") {
 		// Random img load
@@ -88,8 +88,12 @@ function Load(img) {
 	}
 
 	clearData("load");
+	if (window.ShareDBType == "true") {
+		ShareLink = window.location.protocol + "//" + window.location.host + window.location.pathname + "?type=" + databaseType + "&img=" + picName;
+	} else {
+		ShareLink = window.location.protocol + "//" + window.location.host + window.location.pathname + "?img=" + picName;
+	}
 
-	ShareLink = window.location.protocol + "//" + window.location.host + window.location.pathname + "?img=" + picName;
 	document.getElementById("colorPic").src = picLink;
 
 	// load error
@@ -153,6 +157,21 @@ function Load(img) {
 }
 
 function windowload (isMoveInfoZone,databaseType) {
+
+	if (databaseType == "auto") {
+		const type = ["fur","gay","transfur"]
+		for (r=0;r<type.length;r++) {
+			if (GetQueryString("type") == type[r]) {
+				databaseType = type[r];
+				ShareDBType = "true";
+			}
+		}
+	}
+	if (window.ShareDBType != "true" && databaseType == "auto") {
+		alert("請指定正確的DBType!!")
+		return null;
+	}
+
 
 	window.onresize = function () {
 		document.getElementById("InfoZone").style.top = "15px";
@@ -228,9 +247,9 @@ function windowload (isMoveInfoZone,databaseType) {
 			//mode auto,support Specify & Random.
 			if (GetQueryString("img").toString() != null) {
 				var img = GetQueryString("img");
-				Load(img);
+				Load(img,databaseType);
 			} else {
-				Load("");
+				Load("",databaseType);
 			}
 
 		}

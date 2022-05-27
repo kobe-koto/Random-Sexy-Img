@@ -101,6 +101,7 @@ a:link:hover,a:visited:hover {
     width: 100%;
     height: auto;
     user-select: none;
+    display: block;
 }
 #non-js {
     position: fixed;
