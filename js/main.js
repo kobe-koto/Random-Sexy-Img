@@ -1,6 +1,6 @@
 /* Encoding: UTF-8
-* Made with heart by kobe-koto in AGPL-3.0 License License
-* copyright 2021 kobe-koto */
+*  Made with heart by kobe-koto in AGPL-3.0 License License
+*  copyright 2021 kobe-koto */
 
 
 function random (intmin,intmax) {
