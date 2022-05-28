@@ -2,17 +2,6 @@
 *  Made with heart by kobe-koto in AGPL-3.0 License License
 *  copyright 2021 kobe-koto */
 
-
-function random (intmin,intmax) {
-	//get a random num
-	while (!isNaN(intmax) && !isNaN(intmin) && !intmax.toString().match(/(-)/i)) {
-		var randomno = Math.round(intmax * Math.random());
-		if (randomno <= intmax && randomno >= intmin) {
-			return randomno;
-		}
-	}
-}
-
 function copyPicShareLink() {
 	try {
 		navigator.clipboard.writeText(ShareLink).then();
@@ -34,13 +23,7 @@ function clearData(Value) {
 	document.getElementById("lock").href = "";
 	document.getElementById("download").href = "";
 	document.getElementById("download").download = "";
-	if (window.location.toString().match(/(gay\/|fur\/)/i)) {
-		document.getElementById("CheckImg").style.backgroundImage = "url(../images/load.svg)";
-	} else if (window.location.toString().match(/(gay|fur)/i)) {
-		document.getElementById("CheckImg").style.backgroundImage = "url(../images/load.svg)";
-	} else {
-		document.getElementById("CheckImg").style.backgroundImage = "url(./images/load.svg)";
-	}
+	document.getElementById("CheckImg").style.backgroundImage = "url(../images/load.svg)";
 }
 function GetQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -77,21 +60,17 @@ function Load(img,databaseType) {
 		picLink = GetImgAPI + img;
 	} else {
 		console.error("數·值·錯·誤·!");
-		if (window.location.toString().match(/(gay|fur)/i)) {
-			document.getElementById("colorPic").src = "../images/error.svg";
-			document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
-		} else {
-			document.getElementById("colorPic").src = "./images/error.svg";
-			document.getElementById("CheckImg").style.backgroundImage = "url(./images/error.svg)";
-		}
+		document.getElementById("colorPic").src = "../images/error.svg";
+		document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
+
 		return null;
 	}
 
 	clearData("load");
 	if (window.ShareDBType == "true") {
-		ShareLink = window.location.protocol + "//" + window.location.host + window.location.pathname + "?type=" + databaseType + "&img=" + picName;
+		ShareLink = window.location.protocol+"//"+window.location.host+window.location.pathname+"?type="+databaseType+"&img="+picName;
 	} else {
-		ShareLink = window.location.protocol + "//" + window.location.host + window.location.pathname + "?img=" + picName;
+		ShareLink = window.location.protocol+"//"+window.location.host+window.location.pathname+"?img="+picName;
 	}
 
 	document.getElementById("colorPic").src = picLink;
@@ -102,13 +81,9 @@ function Load(img,databaseType) {
 
 		clearData("");
 
-		if (window.location.toString().match(/(gay|fur)/i)) {
-			document.getElementById("colorPic").src = "../images/error.svg";
-			document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
-		} else {
-			document.getElementById("colorPic").src = "./images/error.svg";
-			document.getElementById("CheckImg").style.backgroundImage = "url(./images/error.svg)";
-		}
+		document.getElementById("colorPic").src = "../images/error.svg";
+		document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
+
 		request = new XMLHttpRequest();
 		request.open("GET", picLink, true);
 		request.send();
@@ -144,13 +119,11 @@ function Load(img,databaseType) {
 		document.getElementById("download").href = picLink;
 		document.getElementById("download").download = picName;
 
-		document.getElementById("picNum").innerHTML = "您要的銫圖 「" + picName + "」‼";
+		document.getElementById("picNum").innerHTML = "您要的銫圖 「" + picName + "」 ‼";
 
-		if (window.location.toString().match(/(gay|fur)/i)) {
-			document.getElementById("CheckImg").style.backgroundImage = "url(../images/check.svg)";
-		} else {
-			document.getElementById("CheckImg").style.backgroundImage = "url(./images/check.svg)";
-		}
+
+		document.getElementById("CheckImg").style.backgroundImage = "url(../images/check.svg)";
+
 
 		console.log("INFO: 圖像成功載入...您要的銫圖!")
 	}
@@ -162,7 +135,7 @@ function windowload (isMoveInfoZone,databaseType) {
 		const type = ["fur","gay","transfur"]
 		for (r=0;r<type.length;r++) {
 			if (GetQueryString("type") == type[r]) {
-				databaseType = type[r];
+				window.databaseType = type[r];
 				ShareDBType = "true";
 			}
 		}
@@ -214,14 +187,10 @@ function windowload (isMoveInfoZone,databaseType) {
 		console.log(window.location.protocol + "下无法加载DataBase");
 	} else {
 		//config ColorImg database loc.
-		if (window.location.toString().match(/(gay|fur)/i)) {
-			requestURL = "../database/"+databaseType+".txt";
-		} else {
-			requestURL = "./database/"+databaseType+".txt";
-		}
+		var requestURL = "../database/"+window.databaseType+".txt";
 
 		//request ColorImg database.
-		request = new XMLHttpRequest();
+		var request = new XMLHttpRequest();
 		request.open("GET", requestURL, true);
 		request.send();
 		request.onerror = function () {
@@ -247,9 +216,9 @@ function windowload (isMoveInfoZone,databaseType) {
 			//mode auto,support Specify & Random.
 			if (GetQueryString("img").toString() != null) {
 				var img = GetQueryString("img");
-				Load(img,databaseType);
+				Load(img,window.databaseType);
 			} else {
-				Load("",databaseType);
+				Load("",window.databaseType);
 			}
 
 		}
