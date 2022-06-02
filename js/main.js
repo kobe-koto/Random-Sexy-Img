@@ -2,9 +2,9 @@
 *  Made with heart by kobe-koto in AGPL-3.0 License License
 *  copyright 2021 kobe-koto */
 
-function copyPicShareLink() {
+function copyPicShareLink(ToCopyText) {
 	try {
-		navigator.clipboard.writeText(ShareLink).then();
+		navigator.clipboard.writeText(ToCopyText).then();
 		console.log("successful.");
 		alert("successful.");
 	} catch (err) {
@@ -35,7 +35,7 @@ function GetQueryString(name) {
 		return "";
 	}
 }
-function Load(img,databaseType) {
+function Load(img) {
 	//load a new Img from varied API.
 	if (img == "") {
 		// Random img load
@@ -47,12 +47,6 @@ function Load(img,databaseType) {
 				break;
 			}
 		}
-
-		/* picName = ColorImgJson.pics[(random("0",(ColorImgJson.fileNum - 1)))].name;
-		 * picLink = GetImgAPI + picName;
-		 */
-
-
 	} else if (img != null) {
 		// Specify img load
 		console.log("指定圖像Name模式.");
@@ -67,8 +61,8 @@ function Load(img,databaseType) {
 	}
 
 	clearData("load");
-	if (window.ShareDBType == "true") {
-		ShareLink = window.location.protocol+"//"+window.location.host+window.location.pathname+"?type="+databaseType+"&img="+picName;
+	if (window.ShareDBTypeSP == "true") {
+		ShareLink = window.location.protocol+"//"+window.location.host+window.location.pathname+"?type="+ShareDBType+"&img="+picName;
 	} else {
 		ShareLink = window.location.protocol+"//"+window.location.host+window.location.pathname+"?img="+picName;
 	}
@@ -83,7 +77,7 @@ function Load(img,databaseType) {
 
 		document.getElementById("colorPic").src = "../images/error.svg";
 		document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
-
+		document.getElementById("picNum").innerHTML = "ERROR: 出現了一點問題, 正在重新請求圖像以便於辨識問題.";
 		request = new XMLHttpRequest();
 		request.open("GET", picLink, true);
 		request.send();
@@ -135,14 +129,16 @@ function windowload (isMoveInfoZone,databaseType) {
 		const type = ["fur","gay","transfur"]
 		for (r=0;r<type.length;r++) {
 			if (GetQueryString("type") == type[r]) {
-				window.databaseType = type[r];
-				ShareDBType = "true";
+				ShareDBTypeSP = "true";
+				ShareDBType = type[r];
 			}
 		}
 	}
-	if (window.ShareDBType != "true" && databaseType == "auto") {
+	if (window.ShareDBTypeSP != "true" && databaseType == "auto") {
 		alert("請指定正確的DBType!!")
 		return null;
+	} else if (databaseType != "auto") {
+		ShareDBType = databaseType;
 	}
 
 
@@ -187,7 +183,7 @@ function windowload (isMoveInfoZone,databaseType) {
 		console.log(window.location.protocol + "下无法加载DataBase");
 	} else {
 		//config ColorImg database loc.
-		var requestURL = "../database/"+window.databaseType+".txt";
+		var requestURL = "../database/"+ShareDBType+".txt";
 
 		//request ColorImg database.
 		var request = new XMLHttpRequest();
@@ -205,10 +201,10 @@ function windowload (isMoveInfoZone,databaseType) {
 			ColorImgJson = JSON.parse(request.response);
 
 			//get %PicCount, put it on $PicCount.
-			document.getElementById("PicCount").innerHTML = "隨機色圖"+databaseType+"目前已收錄"+ColorImgJson.fileNum+"張色圖!!"
+			document.getElementById("PicCount").innerHTML = "隨機色圖"+ShareDBType+"目前已收錄"+ColorImgJson.fileNum+"張色圖!!"
 
 			//var API.
-			GetImgAPI = "https://file.koto.cc/api/raw/?path=/Image/GetColorImg/"+databaseType+"/";
+			GetImgAPI = "https://file.koto.cc/api/raw/?path=/Image/GetColorImg/"+ShareDBType+"/";
 
 
 			console.log("INFO: 成功載入了列表!");
@@ -216,9 +212,9 @@ function windowload (isMoveInfoZone,databaseType) {
 			//mode auto,support Specify & Random.
 			if (GetQueryString("img").toString() != null) {
 				var img = GetQueryString("img");
-				Load(img,window.databaseType);
+				Load(img);
 			} else {
-				Load("",window.databaseType);
+				Load("");
 			}
 
 		}
