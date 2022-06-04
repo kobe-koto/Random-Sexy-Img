@@ -5,11 +5,10 @@
 function copyPicShareLink(ToCopyText) {
 	try {
 		navigator.clipboard.writeText(ToCopyText).then();
-		console.log("successful.");
-		alert("successful.");
+		alert("Successful to Copy \r\n\""+ToCopyText+"\"");
 	} catch (err) {
-		console.error("cannot copy link.")
-		alert("cannot copy link.");
+		console.error("Cannot copy \""+ToCopyText+"\".")
+		alert("Cannot copy \r\n\""+ToCopyText+"\".");
 	}
 }
 
@@ -25,19 +24,20 @@ function clearData(Value) {
 	document.getElementById("download").download = "";
 	document.getElementById("CheckImg").style.backgroundImage = "url(../images/load.svg)";
 }
+
 function GetQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 	var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-
-	if (r != null) {
-		return r[2];
-	} else {
-		return "";
-	}
+	if (r != null) {return r[2];} else {return "";}
 }
 function Load(img) {
 	//load a new Img from varied API.
-	if (img == "") {
+	if (img != "") {
+		// Specify img load
+		console.log("指定圖像Name模式.");
+		picName = img;
+		picLink = GetImgAPI + img;
+	} else {
 		// Random img load
 		console.log("隨機圖像模式");
 		while (true) {
@@ -47,17 +47,6 @@ function Load(img) {
 				break;
 			}
 		}
-	} else if (img != null) {
-		// Specify img load
-		console.log("指定圖像Name模式.");
-		picName = img;
-		picLink = GetImgAPI + img;
-	} else {
-		console.error("數·值·錯·誤·!");
-		document.getElementById("colorPic").src = "../images/error.svg";
-		document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
-
-		return null;
 	}
 
 	clearData("load");
@@ -123,10 +112,13 @@ function Load(img) {
 	}
 }
 
+
+
 function windowload (isMoveInfoZone,databaseType) {
 
+	//定義DBType。
 	if (databaseType == "auto") {
-		const type = ["fur","gay","transfur"]
+		var type = ["fur","gay","transfur"]
 		for (r=0;r<type.length;r++) {
 			if (GetQueryString("type") == type[r]) {
 				ShareDBTypeSP = "true";
@@ -142,16 +134,14 @@ function windowload (isMoveInfoZone,databaseType) {
 	}
 
 
+	//「⚠ 衆神歸位 ⚠」resize時InfoZone歸位。
 	window.onresize = function () {
 		document.getElementById("InfoZone").style.top = "15px";
 		document.getElementById("InfoZone").style.left = "15px";
 	}
 
 
-	if (isMoveInfoZone === "false") {
-		console.log("將不會讓InfoZone可拖動。");
-	} else if (isMoveInfoZone == "true") {
-		console.log("將會讓InfoZone可拖動。");
+	if (isMoveInfoZone == "true") {
 		document.getElementById("InfoZone").onmousedown = function (e) {
 			//on mouse press on the element, record the element XY as disX & disY.
 			var disX = e.clientX - document.getElementById("InfoZone").offsetLeft;
@@ -180,7 +170,7 @@ function windowload (isMoveInfoZone,databaseType) {
 
 	if (window.location.protocol.match(/(file|data)/i)) {
 		alert(window.location.protocol + "下无法加载DataBase");
-		console.log(window.location.protocol + "下无法加载DataBase");
+		console.error(window.location.protocol + "下无法加载DataBase");
 	} else {
 		//config ColorImg database loc.
 		var requestURL = "../database/"+ShareDBType+".txt";
@@ -188,38 +178,30 @@ function windowload (isMoveInfoZone,databaseType) {
 		//request ColorImg database.
 		var request = new XMLHttpRequest();
 		request.open("GET", requestURL, true);
-		request.send();
 		request.onerror = function () {
+			console.error("ERROR! 未能載入列表.");
 			document.getElementById("picNum").innerHTML = "ERROR: 列表無法載入";
-			console.error("ERROR! cannot loading files list data.");
 			document.getElementById("colorPic").src = "./images/error.svg";
 			document.getElementById("CheckImg").style.backgroundImage = "url(./images/error.svg)";
 			return null;
 		}
 		request.onload = function () {
-			//parse data as JSON.
+			console.log("INFO: 成功載入了列表!");
 			ColorImgJson = JSON.parse(request.response);
-
-			//get %PicCount, put it on $PicCount.
+			GetImgAPI = "https://file.koto.cc/api/raw/?path=/Image/GetColorImg/"+ShareDBType+"/";
 			document.getElementById("PicCount").innerHTML = "隨機色圖"+ShareDBType+"目前已收錄"+ColorImgJson.fileNum+"張色圖!!"
 
-			//var API.
-			GetImgAPI = "https://file.koto.cc/api/raw/?path=/Image/GetColorImg/"+ShareDBType+"/";
-
-
-			console.log("INFO: 成功載入了列表!");
-
 			//mode auto,support Specify & Random.
-			if (GetQueryString("img").toString() != null) {
-				var img = GetQueryString("img");
-				Load(img);
+			var imgRequest = GetQueryString("img").toString()
+			if (imgRequest != null) {
+				Load(imgRequest);
 			} else {
-				Load("");
+				Load();
 			}
-
 		}
-	}
+		request.send();
 
+	}
 }
 
 
