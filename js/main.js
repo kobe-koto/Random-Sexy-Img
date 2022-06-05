@@ -14,7 +14,6 @@ function copyPicShareLink(ToCopyText) {
 
 function clearData(Value) {
 	//clear old data,use for reload a new img
-
 	if (Value === "load") {
 		document.getElementById("picNum").innerHTML = "INFO: 載入中";
 	}
@@ -74,29 +73,24 @@ function Load(img) {
 			if (request.status == '404') {
 				document.getElementById("picNum").innerHTML = "ERROR: 請求的圖像不·存·在·!";
 				console.error("請求的圖像不·存·在·!");
-				return null;
 			} else if (window.navigator.onLine == false) {
 				document.getElementById("picNum").innerHTML = "ERROR: 您似乎未連接上網際網路.";
 				console.error("似乎未連接上網際網路.");
-				return null;
 			} else if (GetQueryString("img") != null && request.status != '200' && window.navigator.onLine == true) {
 				document.getElementById("picNum").innerHTML = "ERROR: 可能是傳入的圖像name未找到, 或是您無法鏈接至 API.";
 				console.error("可能是傳入的圖像name未找到, 或是您無法鏈接至 API.");
-				return null;
 			} else {
 				document.getElementById("picNum").innerHTML = "ERROR: 未知錯誤, 請打開瀏覽器F12調試器, 轉到控制臺截下全部内容並在GitHub或者發郵件到admin@koto.cc進行反饋.";
 				console.error("未知錯誤, 請打開瀏覽器F12調試器, 轉到控制臺截下全部内容並在GitHub或者發郵件到admin@koto.cc進行反饋.");
-				return null;
 			}
-
+			document.getElementById("picNum").innerHTML += "<br>圖像名稱：" + picName;
+			return null;
 		}
-
 	}
 
 	// load done
 	document.getElementById("colorPic").onload = function () {
 		document.getElementById("colorPic").onerror = null;
-
 		document.getElementById("raw").href = picLink;
 		document.getElementById("lock").href = ShareLink;
 		document.getElementById("download").href = picLink;
@@ -115,31 +109,6 @@ function Load(img) {
 
 
 function windowload (isMoveInfoZone,databaseType) {
-
-	//定義DBType。
-	if (databaseType == "auto") {
-		var type = ["fur","gay","transfur"]
-		for (r=0;r<type.length;r++) {
-			if (GetQueryString("type") == type[r]) {
-				ShareDBTypeSP = "true";
-				ShareDBType = type[r];
-			}
-		}
-	}
-	if (window.ShareDBTypeSP != "true" && databaseType == "auto") {
-		alert("請指定正確的DBType!!")
-		return null;
-	} else if (databaseType != "auto") {
-		ShareDBType = databaseType;
-	}
-
-
-	//「⚠ 衆神歸位 ⚠」resize時InfoZone歸位。
-	window.onresize = function () {
-		document.getElementById("InfoZone").style.top = "15px";
-		document.getElementById("InfoZone").style.left = "15px";
-	}
-
 
 	if (isMoveInfoZone == "true") {
 		document.getElementById("InfoZone").onmousedown = function (e) {
@@ -164,10 +133,31 @@ function windowload (isMoveInfoZone,databaseType) {
 				document.onmouseup = null;
 			}
 		}
+		//「⚠ 衆神歸位 ⚠」resize時InfoZone歸位。
+		window.onresize = function () {
+			document.getElementById("InfoZone").style.top = "15px";
+			document.getElementById("InfoZone").style.left = "15px";
+		}
+	}
+
+	//定義DBType。
+	if (databaseType == "auto") {
+		var type = ["fur","gay","transfur"]
+		for (r=0;r<type.length;r++) {
+			if (GetQueryString("type").toLowerCase() == type[r]) {
+				ShareDBTypeSP = "true";
+				ShareDBType = type[r];
+			}
+		}
+	}
+	if (window.ShareDBTypeSP != "true" && databaseType == "auto") {
+		alert("請指定正確的DBType!!")
+		return null;
+	} else if (databaseType != "auto") {
+		ShareDBType = databaseType;
 	}
 
 	document.getElementById("picNum").innerHTML = "INFO: 正在載入銫圖列表";
-
 	if (window.location.protocol.match(/(file|data)/i)) {
 		alert(window.location.protocol + "下无法加载DataBase");
 		console.error(window.location.protocol + "下无法加载DataBase");

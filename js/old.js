@@ -30,37 +30,30 @@ function FullScreen() {
 
 function clearData(Value) {
 	//clear old data,use for reload a new img
-	switch (Value) {
-		case "load":
-			document.getElementById("raw").href = "";
-			document.getElementById("raw").innerHTML = "";
-			document.getElementById("download").href = "";
-			document.getElementById("download").download = "";
-			document.getElementById("download").innerHTML = "";
-
-			document.getElementById("PicShareLink").innerHTML = "";
-			document.getElementById("picNum").innerHTML = "loading";
-			document.getElementById("loader").style.display = "unset";
-			console.log("loading");
-		break;
-
-		case "":
-		default:
-			document.getElementById("loader").style.display = "none";
-			document.getElementById("raw").href = "";
-			document.getElementById("raw").innerHTML = "";
-			document.getElementById("download").href = "";
-			document.getElementById("download").download = "";
-			document.getElementById("download").innerHTML = "";
-		break;
+	if (Value == "load") {
+		document.getElementById("PicShareLink").innerHTML = "";
+		document.getElementById("picNum").innerHTML = "loading";
+		document.getElementById("loader").style.display = "unset";
+	} else {
+		document.getElementById("loader").style.display = "none";
 	}
+	document.getElementById("raw").href = "";
+	document.getElementById("raw").innerHTML = "";
+	document.getElementById("download").href = "";
+	document.getElementById("download").download = "";
+	document.getElementById("download").innerHTML = "";
 }
 
 function windowload() {
+	var typeQuery = GetQueryString(type).toLowerCase();
+	if (typeQuery != "fur"||typeQuery != "gay"||typeQuery != "transfur") {
+		alert("請輸入正確的Type值！");
+		return null;
+	}
 	//on window loaded,request ColorImg database(?) & auto parse data,support n/r|r,n|clean.
 	document.getElementById("picNum").innerHTML = "loading files list data";
 	
-	var requestURL = "../database/fur.txt";
+	var requestURL = "../database/"+typeQuery+".txt";
 	var request = new XMLHttpRequest();
 	request.open("GET", requestURL,true);
 	request.send(null);
@@ -73,8 +66,8 @@ function windowload() {
 		FileMax = ColorImgJson.fileNum - 1;
 		//var PicNumMax
 
-		API1 = "https://drive-koto.vercel.app/api/raw/?path=/Image/GetColorImg/";
-		API2 = "https://image-koto.000webhostapp.com/?/Image/GetColorImg/";
+		API1 = "https://file.koto.cc/api/raw/?path=/Image/GetColorImg/"+typeQuery+"/";
+		API2 = "https://drive.koto.cc/Image/GetColorImg/"+typeQuery+"/";
 		GetImgAPI = API1;
 		//var APIs
 
@@ -135,7 +128,7 @@ function Load(img) {
 		document.getElementById("loader").style.display = "none";
 		document.getElementById("picNum").innerHTML = "Pic = " + picName;
 
-		document.getElementById("PicShareLink").innerHTML = "Share the image with this link!<br>" + window.location.protocol + "//" + window.location.host + window.location.pathname + "?img=" + picName;
+		document.getElementById("PicShareLink").innerHTML = "Share the image with this link!<br>" + window.location.protocol + "//" + window.location.host + window.location.pathname + "?type="+typeQuery+"&img=" + picName;
 		console.log("Image load successfully.")
 	}
 
