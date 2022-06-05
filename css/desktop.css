@@ -71,9 +71,9 @@ a:link:hover,a:visited:hover {
 	-ms-user-select: none;
 }
 
-#InfoZone a,a:link:hover,a:visited:hover,a:link,a:visited {
-	text-decoration: none;
-	border: none;
+.ButtonZone * {
+	text-decoration: none !important;
+	border: none !important;
 }
 .imgButton {
 	display: inline-block;
