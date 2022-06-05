@@ -45,8 +45,8 @@ function clearData(Value) {
 }
 
 function windowload() {
-	var typeQuery = GetQueryString(type).toLowerCase();
-	if (typeQuery != "fur"||typeQuery != "gay"||typeQuery != "transfur") {
+	typeQuery = GetQueryString("type").toLowerCase();
+	if (typeQuery != "fur"&&typeQuery != "gay"&&typeQuery != "transfur") {
 		alert("請輸入正確的Type值！");
 		return null;
 	}

@@ -39,9 +39,9 @@ body {
 
 a:link,a:visited {
     text-decoration: none;
-    border: 2px #000000;
+    border: 2px #ffffff;
     border-bottom-style: dotted;
-    color: #000;
+    color: #ffffff;
 }
 a:link:hover,a:visited:hover {
     border-bottom-style: solid;
