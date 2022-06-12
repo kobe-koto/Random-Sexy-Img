@@ -29,26 +29,28 @@ function GetQueryString(name) {
 	var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
 	if (r != null) {return r[2];} else {return "";}
 }
-function Load(img) {
-	//load a new Img from varied API.
-	if (img != "") {
-		// Specify img load
-		console.log("指定圖像Name模式.");
-		picName = img;
-		picLink = GetImgAPI + img;
+
+function GenImgName (SpecifyImgName) {
+	if (SpecifyImgName != "") {
+		return SpecifyImgName;
 	} else {
-		// Random img load
-		console.log("隨機圖像模式");
+		/* Random */
 		while (true) {
-			picName = ColorImgJson.pics[(Math.round((ColorImgJson.fileNum) * Math.random()))].name;
-			if (picName != "LetMeFixThisErrorButDoNotThinkSoItIsWorkGood?.jpg") {
-				picLink = GetImgAPI + picName;
-				break;
+			var RandomImgName = ColorImgJson.pics[(Math.round((ColorImgJson.fileNum) * Math.random()))].name;
+			if (RandomImgName != "LetMeFixThisErrorButDoNotThinkSoItIsWorkGood?.jpg") {
+				return RandomImgName;
 			}
 		}
 	}
+}
+
+function Load(img) {
+	//load a new Img from varied API.
 
 	clearData("load");
+	picName = GenImgName(img);
+	picLink = GetImgAPI + picName;
+
 	if (window.ShareDBTypeSP == "true") {
 		ShareLink = window.location.protocol+"//"+window.location.host+window.location.pathname+"?type="+ShareDBType+"&img="+picName;
 	} else {
@@ -65,27 +67,7 @@ function Load(img) {
 
 		document.getElementById("colorPic").src = "../images/error.svg";
 		document.getElementById("CheckImg").style.backgroundImage = "url(../images/error.svg)";
-		document.getElementById("picNum").innerHTML = "ERROR: 出現了一點問題, 正在重新請求圖像以便於辨識問題.";
-		request = new XMLHttpRequest();
-		request.open("GET", picLink, true);
-		request.send();
-		request.onerror = request.onload = function () {
-			if (request.status == '404') {
-				document.getElementById("picNum").innerHTML = "ERROR: 請求的圖像不·存·在·!";
-				console.error("請求的圖像不·存·在·!");
-			} else if (window.navigator.onLine == false) {
-				document.getElementById("picNum").innerHTML = "ERROR: 您似乎未連接上網際網路.";
-				console.error("似乎未連接上網際網路.");
-			} else if (GetQueryString("img") != null && request.status != '200' && window.navigator.onLine == true) {
-				document.getElementById("picNum").innerHTML = "ERROR: 可能是傳入的圖像name未找到, 或是您無法鏈接至 API.";
-				console.error("可能是傳入的圖像name未找到, 或是您無法鏈接至 API.");
-			} else {
-				document.getElementById("picNum").innerHTML = "ERROR: 未知錯誤, 請打開瀏覽器F12調試器, 轉到控制臺截下全部内容並在GitHub或者發郵件到admin@koto.cc進行反饋.";
-				console.error("未知錯誤, 請打開瀏覽器F12調試器, 轉到控制臺截下全部内容並在GitHub或者發郵件到admin@koto.cc進行反饋.");
-			}
-			document.getElementById("picNum").innerHTML += "<br>圖像名稱：" + picName;
-			return null;
-		}
+		document.getElementById("picNum").innerHTML = "在加載 「"+picName+"」 時遇到問題, 請稍後再試." + "<br>" + "<a href=\""+ShareLink+"\">單擊此處以嘗試重新加載</a>";
 	}
 
 	// load done
