@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* Made with heart by kobe-koto in AGPL-3.0 License License */
+/* copyright 2021 kobe-koto */
+body {
+	display: grid !important;
+}
+.InfoZone {
+	height: auto !important;
+	justify-content: unset !important;
+	align-items: unset !important;
+	display: unset !important;
+	padding: 0 !important;
+}
+.InfoZone > span {
+	display: flex;
+}
+.ButtonZone {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+.imgButton {
+	margin: 0 10px 0 0;
+}
+.ButtonZone a {
+	padding: 10px 0 5px 10px;
+}
+.imgButton {
+	display: inline-block !important;
+}
+#colorPic {
+	width: 100% !important;
+	height: auto !important;
+}
+
+.InfoZone > span span {
+	display: none;
+}
+#line {
+	display: none !important;
+}
+#picNum {
+	margin-right: 25px;
+	padding-right: 20px;
+	border-right: #232323 !important;
+	border-right-style: solid !important;
+	border-right-width: 1px !important;
+}
+

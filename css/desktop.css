@@ -114,3 +114,11 @@ a:link:hover,a:visited:hover {
 	color: #ffffff;
 	font-size: 30px;
 }
+#line {
+	margin-top: 10px;
+	width: 95%;
+	height: 3px;
+	background: rgba(0,0,0,0.6);
+	display: block;
+	border-radius: 25px;
+}

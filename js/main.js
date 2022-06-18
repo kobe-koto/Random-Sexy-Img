@@ -124,7 +124,7 @@ function windowload (isMoveInfoZone,databaseType) {
 
 	//定義DBType。
 	if (databaseType == "auto") {
-		var type = ["fur","gay","transfur"]
+		var type = ["fur","gay","transfur"];
 		for (r=0;r<type.length;r++) {
 			if (GetQueryString("type").toLowerCase() == type[r]) {
 				ShareDBTypeSP = "true";
@@ -138,6 +138,7 @@ function windowload (isMoveInfoZone,databaseType) {
 	} else if (databaseType != "auto") {
 		ShareDBType = databaseType;
 	}
+	document.getElementById("upload").href = "https://drive.koto.cc/"+ShareDBType+"/";
 
 	document.getElementById("picNum").innerHTML = "INFO: 正在載入銫圖列表";
 	if (window.location.protocol.match(/(file|data)/i)) {
