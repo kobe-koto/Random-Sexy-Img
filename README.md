@@ -16,7 +16,7 @@
 
 *Float UI (Blured)*
 
-## 具體 Future : 
+## 具體 Feature : 
 
 1. 鎖定當前圖像
 2. 複製當前圖像分享鏈接
