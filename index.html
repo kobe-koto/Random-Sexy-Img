@@ -7,7 +7,8 @@
 	<title>HomePage | koto的色圖</title>
 	<script>
 		function EnterRSI() {
-			document.getElementById("EnterRSI").href = "./page/"+document.getElementById("PageType").options[document.getElementById("PageType").options.selectedIndex].value+".html?type="+document.getElementById("DBType").options[document.getElementById("DBType").options.selectedIndex].value;
+			window.location.href = window.location.href.split("index.html")[0]+"page/"+document.getElementById("PageType").options[document.getElementById("PageType").options.selectedIndex].value+".html?type="+document.getElementById("DBType").options[document.getElementById("DBType").options.selectedIndex].value;
+			//document.getElementById("EnterRSI").href = "./page/"+document.getElementById("PageType").options[document.getElementById("PageType").options.selectedIndex].value+".html?type="+document.getElementById("DBType").options[document.getElementById("DBType").options.selectedIndex].value;
 			document.getElementById("EnterRSI").click();
 		}
 	</script>
@@ -42,7 +43,6 @@
 		<h3>查看<a href="https://docs.koto.cc/apis/rsi">API文檔</a>！</h3>
 	</div>
 
-	</div>
 	<div class="glass_main">
 		<h2>火速觀看群友女裝視頻</h2>
 		<!--suppress SpellCheckingInspection -->
